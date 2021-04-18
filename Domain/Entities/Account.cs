@@ -6,7 +6,9 @@ namespace Domain.Entities
     public class Account : BaseEntity
     {
         public Guid AccountId { get; set; }
+
+        public string AccountName { get; set; }
         public decimal? Balance { get; set; }
-        public int UserId { get; set; }
+        public Guid UserId { get; set; }
     }
 }

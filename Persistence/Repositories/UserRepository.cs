@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Application.Contracts.Persistence;
 using Domain.Entities;
@@ -15,10 +13,15 @@ namespace Persistence.Repositories
         {
         }
 
-        public async Task<List<User>> GetUsersWithAccounts()
+        public async Task<List<User>> GetUsersWithAccounts(Guid userId)
         {
             var allUsers = await _dbContext.Users.Include(x => x.Accounts).ToListAsync();
             return allUsers;
+        }
+
+        public async Task<User> GetUserWithAddress(Guid userId)
+        {
+            return await _dbContext.Users.Include(e => e.Address).FirstOrDefaultAsync(x => x.UserId == userId);
         }
     }
 }

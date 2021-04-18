@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Application.Features.Users.Queries.GetUserDetails;
 using Application.Features.Users.Queries.GetUserList;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -38,11 +39,12 @@ namespace WebAPI.Controllers
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/<User>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        // GET api/<User>/5/details
+        [HttpGet("{id}/details", Name = "GetUserWithDetails")]
+        public async Task<ActionResult<UserDetailsDto>> Get(Guid id)
         {
-            return "value";
+            var result = await _mediator.Send(new GetUserDetailsQuery() {UserId = id});
+            return Ok(result);
         }
 
         // POST api/<User>

@@ -13,6 +13,8 @@ namespace Persistence.Configurations
 
             builder.ToTable("Account").HasKey("AccountId");
 
+            builder.Property(e => e.AccountName).HasMaxLength(50);
+
             builder.Property(e => e.Balance).HasColumnType("decimal(19,2)");
 
 
