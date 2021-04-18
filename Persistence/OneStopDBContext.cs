@@ -35,6 +35,25 @@ namespace Persistence
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(OneStopDbContext).Assembly);
+
+           /* modelBuilder.Entity<User>()
+                .HasData(
+                    new ()
+                    {
+                        UserId = new Guid(),
+                        UserName = "UserName1",
+                        FirstName = "First Name 1",
+                        LastName = "Last Name 1"
+                    },
+                    new ()
+                    {
+                        UserId = new Guid(),
+                        UserName = "UserName2",
+                        FirstName = "First Name 2",
+                        LastName = "Last Name 2"
+                    }
+                );*/
+
         }
 
         public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())

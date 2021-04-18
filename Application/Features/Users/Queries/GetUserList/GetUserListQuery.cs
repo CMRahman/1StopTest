@@ -12,5 +12,5 @@ namespace Application.Features.Users.Queries.GetUserList
         
     }
 
-    public record UserListDto(string UserName, string FirstName, string LastName);
+    public record UserListDto(Guid UserId, string UserName, string FirstName, string LastName);
 }
