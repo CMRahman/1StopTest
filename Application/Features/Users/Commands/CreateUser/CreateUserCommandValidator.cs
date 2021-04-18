@@ -19,12 +19,12 @@ namespace Application.Features.Users.Commands.CreateUser
             RuleFor(u => u.FirstName)
                 .NotEmpty().WithMessage("{PropertyName} is required")
                 .NotNull()
-                .MaximumLength(10).WithMessage("{PropertyName} must not exceed 50 characters");
+                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters");
 
             RuleFor(u => u.LastName)
                 .NotEmpty().WithMessage("{PropertyName} is required")
                 .NotNull()
-                .MaximumLength(10).WithMessage("{PropertyName} must not exceed 50 characters");
+                .MaximumLength(50).WithMessage("{PropertyName} must not exceed 50 characters");
         }
         
     }

@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using Application.Features.Users.Commands.CreateUser;
 using Application.Features.Users.Queries.GetUserDetails;
 using Application.Features.Users.Queries.GetUserList;
+using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -33,11 +34,11 @@ namespace WebAPI.Controllers
         }
 
         // GET: api/<User>
-        [HttpGet]
+       /* [HttpGet]
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
-        }
+        }*/
 
         // GET api/<User>/5/details
         [HttpGet("{id}/details", Name = "GetUserWithDetails")]
@@ -48,20 +49,29 @@ namespace WebAPI.Controllers
         }
 
         // POST api/<User>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPost(Name = "AddUser")]
+        public async Task<ActionResult<Guid>> Post([FromHeader] string userName, [FromBody] CreateUserCommand createUserCommand)
         {
+            //TODO : In real project, this will be handled by Authorization filter
+            if (userName == "Admin")
+            {
+                var result = await _mediator.Send(createUserCommand);
+                return Ok(result);
+
+            }
+
+            return Unauthorized("Authorization Error!! Only Administrators can create new Users");
         }
 
         // PUT api/<User>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(Guid id, [FromBody] string value)
         {
         }
 
         // DELETE api/<User>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(Guid id)
         {
         }
     }
