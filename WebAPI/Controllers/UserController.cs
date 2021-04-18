@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Features.Users.Commands.CreateUser;
+using Application.Features.Users.Commands.DeleteUser;
 using Application.Features.Users.Queries.GetUserDetails;
 using Application.Features.Users.Queries.GetUserList;
 using Domain.Entities;
@@ -33,18 +34,12 @@ namespace WebAPI.Controllers
             return Ok(userList);
         }
 
-        // GET: api/<User>
-       /* [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }*/
 
         // GET api/<User>/5/details
         [HttpGet("{id}/details", Name = "GetUserWithDetails")]
         public async Task<ActionResult<UserDetailsDto>> Get(Guid id)
         {
-            var result = await _mediator.Send(new GetUserDetailsQuery() {UserId = id});
+            var result = await _mediator.Send(new GetUserDetailsQuery() { UserId = id });
             return Ok(result);
         }
 
@@ -53,14 +48,15 @@ namespace WebAPI.Controllers
         public async Task<ActionResult<Guid>> Post([FromHeader] string userName, [FromBody] CreateUserCommand createUserCommand)
         {
             //TODO : In real project, this will be handled by Authorization filter
-            if (userName == "Admin")
+            if (userName != "Admin")
             {
-                var result = await _mediator.Send(createUserCommand);
-                return Ok(result);
-
+                return Unauthorized("Authorization Error!! Only Administrators can create new Users");
             }
 
-            return Unauthorized("Authorization Error!! Only Administrators can create new Users");
+            var result = await _mediator.Send(createUserCommand);
+            return Ok(result);
+
+
         }
 
         // PUT api/<User>/5
@@ -70,9 +66,19 @@ namespace WebAPI.Controllers
         }
 
         // DELETE api/<User>/5
-        [HttpDelete("{id}")]
-        public void Delete(Guid id)
+        [HttpDelete("{id}", Name = "DeleteUser")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> Delete([FromHeader] string userName, Guid id)
         {
+            if (userName != "Admin")
+            {
+                return Unauthorized("Authorization Error!! Only Administrators can delete Users");
+            }
+            await _mediator.Send(new DeleteUserCommand() { UserId = id });
+            return NoContent();
+
         }
     }
 }
