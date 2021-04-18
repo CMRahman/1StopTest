@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Features.Users.Commands.CreateUser;
 using Application.Features.Users.Commands.DeleteUser;
+using Application.Features.Users.Commands.UpdateUser;
 using Application.Features.Users.Queries.GetUserDetails;
 using Application.Features.Users.Queries.GetUserList;
 using Domain.Entities;
@@ -59,10 +60,14 @@ namespace WebAPI.Controllers
 
         }
 
-        // PUT api/<User>/5
-        [HttpPut("{id}")]
-        public void Put(Guid id, [FromBody] string value)
+        [HttpPut(Name = "UpdateUser")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> Update([FromBody] UpdateUserCommand updateUserCommand)
         {
+            await _mediator.Send(updateUserCommand);
+            return NoContent();
         }
 
         // DELETE api/<User>/5

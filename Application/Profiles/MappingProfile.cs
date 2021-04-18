@@ -1,4 +1,5 @@
 ﻿using Application.Features.Users.Commands.CreateUser;
+using Application.Features.Users.Commands.UpdateUser;
 using Application.Features.Users.Queries.GetUserList;
 using Domain.Entities;
 using AutoMapper;
@@ -14,6 +15,7 @@ namespace Application.Profiles
             CreateMap<User, CreateUserCommand>().ReverseMap();
             CreateMap<Address, UserAddressDto>().ReverseMap();
             CreateMap<User, UserDetailsDto>();
+            CreateMap<User, UpdateUserCommand>().ReverseMap();
         }
     }
 }
