@@ -25,12 +25,12 @@ namespace Persistence
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Address> Addresses { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=OneStop-1;Trusted_Connection=True;");
           
             //base.OnConfiguring(optionsBuilder);
-        }
+        }*/
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
