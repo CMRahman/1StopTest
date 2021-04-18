@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Persistence;
+using WebAPI.Middleware;
 
 namespace WebAPI
 {
@@ -49,6 +50,8 @@ namespace WebAPI
             }
 
             app.UseHttpsRedirection();
+
+            app.UseCustomExceptionHandler();
 
             app.UseRouting();
 
