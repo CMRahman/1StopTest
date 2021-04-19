@@ -18,8 +18,4 @@
     <ProjectReference Include="..\Persistence\Persistence.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\CreateAccount\" />
-  </ItemGroup>
-
 </Project>

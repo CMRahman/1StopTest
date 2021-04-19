@@ -1,5 +1,4 @@
-﻿using System.Data;
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Application.Features.Account.Command.DepositCommand
 {
