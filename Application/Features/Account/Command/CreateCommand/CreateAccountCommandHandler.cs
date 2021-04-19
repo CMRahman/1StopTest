@@ -8,7 +8,7 @@ using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
-namespace Application.Features.Account.Command
+namespace Application.Features.Account.Command.CreateCommand
 {
     public class CreateAccountCommandHandler : IRequestHandler<CreateAccountCommand, Guid>
     {

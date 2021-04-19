@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Application.Features.Account.Command;
+using Application.Features.Account.Command.CreateCommand;
 using Application.Features.Account.Command.DeleteAccount;
 using Application.Features.Account.Query.GetAccount;
 using Application.Features.Account.Query.GetAllAccounts;

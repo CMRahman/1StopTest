@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FluentValidation;
 
-namespace Application.Features.Account.Command
+namespace Application.Features.Account.Command.CreateCommand
 {
     public class CreateAccountCommandValidator : AbstractValidator<CreateAccountCommand>
     {

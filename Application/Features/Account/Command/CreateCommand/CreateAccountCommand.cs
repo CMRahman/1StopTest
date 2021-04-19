@@ -1,7 +1,7 @@
 ﻿using System;
 using MediatR;
 
-namespace Application.Features.Account.Command
+namespace Application.Features.Account.Command.CreateCommand
 {
     public class CreateAccountCommand : IRequest<Guid>
     {
