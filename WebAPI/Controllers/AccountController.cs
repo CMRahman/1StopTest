@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Application.Features.Account.Command.CreateCommand;
 using Application.Features.Account.Command.DeleteAccount;
 using Application.Features.Account.Command.DepositCommand;
+using Application.Features.Account.Command.WithdrawCommand;
 using Application.Features.Account.Query.GetAccount;
 using Application.Features.Account.Query.GetAllAccounts;
 using Application.Features.Users.Queries.GetUserAccounts;
@@ -59,6 +60,19 @@ namespace WebAPI.Controllers
             var result = await _mediator.Send(depositAccountCommand);
             return NoContent();
         }
+
+
+        [HttpPost("withdraw", Name = "Withdraw")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+
+        public async Task<ActionResult> Deposit([FromBody] WithdrawFromAccountCommand withdrawFromAccountCommand)
+        {
+            var result = await _mediator.Send(withdrawFromAccountCommand);
+            return NoContent();
+        }
+
 
         // DELETE api/<User>/5
         [HttpDelete("{id}", Name = "DeleteAccount")]
