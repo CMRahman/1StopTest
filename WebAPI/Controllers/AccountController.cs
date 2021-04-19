@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Features.Account.Command.CreateCommand;
 using Application.Features.Account.Command.DeleteAccount;
+using Application.Features.Account.Command.DepositCommand;
 using Application.Features.Account.Query.GetAccount;
 using Application.Features.Account.Query.GetAllAccounts;
 using Application.Features.Users.Queries.GetUserAccounts;
@@ -32,7 +33,6 @@ namespace WebAPI.Controllers
             return Ok(userList);
         }
 
-        // GET api/<User>/5/details
         [HttpGet("{id}", Name = "GetAccountDetails")]
         public async Task<ActionResult<UserDetailsDto>> GetAccountDetails(Guid id)
         {
@@ -40,12 +40,24 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        // POST api/<User>
+
         [HttpPost(Name = "AddAccount")]
         public async Task<ActionResult<Guid>> Post([FromBody] CreateAccountCommand createAccountCommand)
         {
             var result = await _mediator.Send(createAccountCommand);
             return Ok(result);
+        }
+
+
+        [HttpPost("deposit", Name = "Deposit")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+
+        public async Task<ActionResult> Deposit([FromBody] DepositAccountCommand depositAccountCommand)
+        {
+            var result = await _mediator.Send(depositAccountCommand);
+            return NoContent();
         }
 
         // DELETE api/<User>/5

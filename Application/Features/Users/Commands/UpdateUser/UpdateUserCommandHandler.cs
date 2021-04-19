@@ -28,7 +28,7 @@ namespace Application.Features.Users.Commands.UpdateUser
             }
 
             var validator = new UpdateUserCommandValidator();
-            var validationResult = await validator.ValidateAsync(request);
+            var validationResult = await validator.ValidateAsync(request, cancellationToken);
 
             if (validationResult.Errors.Count > 0)
             {
