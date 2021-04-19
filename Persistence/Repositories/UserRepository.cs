@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Application.Contracts.Persistence;
-using Application.Features.Users.Queries.GetUserAccounts;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 

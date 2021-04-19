@@ -18,6 +18,8 @@ namespace Persistence
             services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddScoped<IAccountRepository, AccountRepository>();
+
+            services.AddScoped<IAddressRepository, AddressRepository>();
            
 
             return services;    
