@@ -8,7 +8,7 @@ using MediatR;
 
 namespace Application.Features.Users.Queries.GetUserAccounts
 {
-    public class GetUserAccountsQueryHandler : IRequestHandler<GetUserAccountsQuery, List<AccountsDto>>
+    public class GetUserAccountsQueryHandler : IRequestHandler<GetUserAccountsQuery, List<AccountDto>>
     {
         private readonly IMapper _mapper;
         private readonly IAccountRepository _accountRepository;
@@ -18,10 +18,10 @@ namespace Application.Features.Users.Queries.GetUserAccounts
             _mapper = mapper;
             _accountRepository = accountRepository;
         }
-        public async Task<List<AccountsDto>> Handle(GetUserAccountsQuery request, CancellationToken cancellationToken)
+        public async Task<List<AccountDto>> Handle(GetUserAccountsQuery request, CancellationToken cancellationToken)
         {
             var accounts = await _accountRepository.GetUserAccounts(request.UserId);
-            return _mapper.Map<List<AccountsDto>>(accounts);
+            return _mapper.Map<List<AccountDto>>(accounts);
 
         }
     }

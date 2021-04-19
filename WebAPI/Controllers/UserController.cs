@@ -46,7 +46,7 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("{id}/accounts", Name = "GetUserAccounts")]
-        public async Task<ActionResult<List<AccountsDto>>> GetUserAccounts(Guid id)
+        public async Task<ActionResult<List<AccountDto>>> GetUserAccounts(Guid id)
         {
             var result = await _mediator.Send(new GetUserAccountsQuery() { UserId = id });
             return result;

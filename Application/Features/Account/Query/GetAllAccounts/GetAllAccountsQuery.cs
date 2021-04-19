@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Application.Features.Account.Query.GetAllAccounts
 {
-    public class GetAllAccountsQuery : IRequest<List<AccountsDto>>
+    public class GetAllAccountsQuery : IRequest<List<AccountDto>>
     {
     }
 }

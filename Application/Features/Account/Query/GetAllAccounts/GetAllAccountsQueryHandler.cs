@@ -8,7 +8,7 @@ using MediatR;
 
 namespace Application.Features.Account.Query.GetAllAccounts
 {
-    public class GetAllAccountsQueryHandler : IRequestHandler<GetAllAccountsQuery, List<AccountsDto>>
+    public class GetAllAccountsQueryHandler : IRequestHandler<GetAllAccountsQuery, List<AccountDto>>
     {
         private readonly IMapper _mapper;
         private readonly IAccountRepository _accountRepository;
@@ -18,10 +18,10 @@ namespace Application.Features.Account.Query.GetAllAccounts
             _mapper = mapper;
             _accountRepository = accountRepository;
         }
-        public async Task<List<AccountsDto>> Handle(GetAllAccountsQuery request, CancellationToken cancellationToken)
+        public async Task<List<AccountDto>> Handle(GetAllAccountsQuery request, CancellationToken cancellationToken)
         {
             var result = await _accountRepository.ListAllAsync();
-            return _mapper.Map<List<AccountsDto>>(result);
+            return _mapper.Map<List<AccountDto>>(result);
 
         }
     }

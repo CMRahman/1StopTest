@@ -17,7 +17,7 @@ namespace Application.Profiles
             CreateMap<Address, UserAddressDto>().ReverseMap();
             CreateMap<User, UserDetailsDto>();
             CreateMap<User, UpdateUserCommand>().ReverseMap();
-            CreateMap<Account, AccountsDto>();
+            CreateMap<Account, AccountDto>();
           
         }
     }
