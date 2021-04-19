@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <Folder Include="Features\Account\Query\GetAccount\" />
-    <Folder Include="Features\Account\Query\GetAllAccounts\" />
   </ItemGroup>
 
 </Project>
