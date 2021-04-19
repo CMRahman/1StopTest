@@ -18,7 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Users\Queries\GetUserAccounts\" />
+    <Folder Include="Features\Account\Query\GetAccount\" />
+    <Folder Include="Features\Account\Query\GetAllAccounts\" />
   </ItemGroup>
 
 </Project>

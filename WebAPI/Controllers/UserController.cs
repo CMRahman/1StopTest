@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Application.Features.Users.Commands.CreateUser;
 using Application.Features.Users.Commands.DeleteUser;
 using Application.Features.Users.Commands.UpdateUser;
+using Application.Features.Users.Queries.GetUserAccounts;
 using Application.Features.Users.Queries.GetUserDetails;
 using Application.Features.Users.Queries.GetUserList;
 using Domain.Entities;
@@ -37,11 +38,19 @@ namespace WebAPI.Controllers
 
 
         // GET api/<User>/5/details
-        [HttpGet("{id}/details", Name = "GetUserWithDetails")]
-        public async Task<ActionResult<UserDetailsDto>> Get(Guid id)
+        [HttpGet("{id}/details", Name = "GetUserWithAddress")]
+        public async Task<ActionResult<UserDetailsDto>> GetUserWithAddress(Guid id)
         {
             var result = await _mediator.Send(new GetUserDetailsQuery() { UserId = id });
             return Ok(result);
+        }
+
+        [HttpGet("{id}/accounts", Name = "GetUserAccounts")]
+        public async Task<ActionResult<List<AccountsDto>>> GetUserAccounts(Guid id)
+        {
+            var result = await _mediator.Send(new GetUserAccountsQuery() { UserId = id });
+            return result;
+
         }
 
         // POST api/<User>

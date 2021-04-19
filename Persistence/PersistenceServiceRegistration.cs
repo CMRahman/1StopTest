@@ -16,6 +16,8 @@ namespace Persistence
             services.AddScoped(typeof(IAsyncRepository<>), typeof(BaseRepository<>));
 
             services.AddScoped<IUserRepository, UserRepository>();
+
+            services.AddScoped<IAccountRepository, AccountRepository>();
            
 
             return services;    
