@@ -54,7 +54,8 @@ namespace WebAPI.Middleware
                     break;
                 case Exception ex:
                     httpStatusCode = HttpStatusCode.BadRequest;
-                    result = JsonConvert.SerializeObject(new { errorReference = DateTime.Now.ToString() });
+                    result = JsonConvert.SerializeObject(
+                        new { message = $"An unexpected error occurred. Error Reference: {DateTime.Now}"});
                     _logger.LogError(ex, result);
                     break;
             }
