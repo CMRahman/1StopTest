@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Application.Features.Account.Command;
 using Application.Features.Account.Query.GetAccount;
 using Application.Features.Account.Query.GetAllAccounts;
 using Application.Features.Users.Commands.CreateUser;
@@ -39,20 +40,12 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-       /* // POST api/<User>
+        // POST api/<User>
         [HttpPost(Name = "AddAccount")]
-        public async Task<ActionResult<Guid>> Post([FromBody] CreateUserCommand createUserCommand)
+        public async Task<ActionResult<Guid>> Post([FromBody] CreateAccountCommand createAccountCommand)
         {
-            //TODO : In real project, this will be handled by Authorization filter
-            if (userName != "Admin")
-            {
-                return Unauthorized("Authorization Error!! Only Administrators can create new Users");
-            }
-
-            var result = await _mediator.Send(createUserCommand);
+            var result = await _mediator.Send(createAccountCommand);
             return Ok(result);
-
-
-        }*/
+        }
     }
 }

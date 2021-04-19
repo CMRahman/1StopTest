@@ -1,4 +1,5 @@
-﻿using Application.Features.Users.Commands.CreateUser;
+﻿using Application.Features.Account.Command;
+using Application.Features.Users.Commands.CreateUser;
 using Application.Features.Users.Commands.UpdateUser;
 using Application.Features.Users.Queries.GetUserAccounts;
 using Application.Features.Users.Queries.GetUserList;
@@ -18,7 +19,8 @@ namespace Application.Profiles
             CreateMap<User, UserDetailsDto>();
             CreateMap<User, UpdateUserCommand>().ReverseMap();
             CreateMap<Account, AccountDto>();
-          
+            CreateMap<Account, CreateAccountCommand>().ReverseMap();
+
         }
     }
 }
