@@ -36,7 +36,7 @@ namespace Application.Features.Account.Command
             var account = _mapper.Map<Domain.Entities.Account>(request);
             account = await _accountRepository.AddAsync(account);
 
-            _logger.LogInformation($"{account.AccountId} created on {DateTime.Now}");
+            _logger.LogInformation($"Account: {account.AccountId} created on {DateTime.Now}");
 
             return account.AccountId;
 

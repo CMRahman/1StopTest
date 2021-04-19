@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Application.Features.Account.Command;
+using Application.Features.Account.Command.DeleteAccount;
 using Application.Features.Account.Query.GetAccount;
 using Application.Features.Account.Query.GetAllAccounts;
-using Application.Features.Users.Commands.CreateUser;
 using Application.Features.Users.Queries.GetUserAccounts;
 using Application.Features.Users.Queries.GetUserDetails;
 using MediatR;
@@ -46,6 +46,18 @@ namespace WebAPI.Controllers
         {
             var result = await _mediator.Send(createAccountCommand);
             return Ok(result);
+        }
+
+        // DELETE api/<User>/5
+        [HttpDelete("{id}", Name = "DeleteAccount")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesDefaultResponseType]
+        public async Task<ActionResult> Delete(Guid id)
+        {
+            await _mediator.Send(new DeleteAccountCommand() { AccountId = id });
+            return NoContent();
+
         }
     }
 }
