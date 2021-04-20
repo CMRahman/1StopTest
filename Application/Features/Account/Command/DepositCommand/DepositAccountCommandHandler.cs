@@ -35,7 +35,7 @@ namespace Application.Features.Account.Command.DepositCommand
                 throw new ValidationException(validationResult);
             }
 
-            account.Balance += request.Amount;
+            account.DepositAccount(request.Amount);
 
 
             await _accountRepository.UpdateAsync(account);

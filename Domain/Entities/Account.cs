@@ -23,5 +23,10 @@ namespace Domain.Entities
                 throw new DomainException("Withdraw amount cannot exceed available balance");
             }
         }
+
+        public void DepositAccount(decimal deposit)
+        {
+            this.Balance += deposit;
+        }
     }
 }

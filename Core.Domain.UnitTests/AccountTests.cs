@@ -41,5 +41,22 @@ namespace Core.Domain.UnitTests
 
             sut.Balance.Should().Equals(remainingBalance);
         }
+
+        [Theory]
+        [InlineData(105.0, 2.0, 107.0)]
+        [InlineData(10.0, 2.40, 12.40)]
+        [InlineData(105.65, 2.30, 107.95)]
+        [InlineData(100.0, 0.05, 100.05)]
+        public void Account_When_Depositing_Should_Increase_Balance(decimal currentBalance, decimal deposit,
+            decimal expectedBalance)
+        {
+            var sut = new Account();
+            sut.Balance = currentBalance;
+
+            sut.DepositAccount(deposit);
+
+            sut.Balance.Should().Equals(expectedBalance);
+
+        }
     }
 }
