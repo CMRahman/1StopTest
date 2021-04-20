@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using Application.Features.Account.Command.CreateCommand;
 using Application.Features.Address.Command;
 using MediatR;
 using Microsoft.AspNetCore.Http;

@@ -59,7 +59,7 @@ namespace WebAPI.Controllers
 
         public async Task<ActionResult> Deposit([FromBody] DepositAccountCommand depositAccountCommand)
         {
-            var result = await _mediator.Send(depositAccountCommand);
+            await _mediator.Send(depositAccountCommand);
             return NoContent();
         }
 
@@ -71,7 +71,7 @@ namespace WebAPI.Controllers
 
         public async Task<ActionResult> Deposit([FromBody] WithdrawFromAccountCommand withdrawFromAccountCommand)
         {
-            var result = await _mediator.Send(withdrawFromAccountCommand);
+            await _mediator.Send(withdrawFromAccountCommand);
             return NoContent();
         }
 
