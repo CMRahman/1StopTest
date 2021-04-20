@@ -2,6 +2,7 @@
 using System.Net;
 using System.Threading.Tasks;
 using Application.Exceptions;
+using Domain.Exception;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
@@ -52,10 +53,16 @@ namespace WebAPI.Middleware
                 case NotFoundException:
                     httpStatusCode = HttpStatusCode.NotFound;
                     break;
+                case DomainException domainException:
+                    httpStatusCode =  HttpStatusCode.BadRequest;
+                    result = JsonConvert.SerializeObject(
+                        new { error = $"{domainException.Message}. Error Reference: {DateTime.Now}"});
+                    _logger.LogError(domainException, result);
+                    break;
                 case Exception ex:
                     httpStatusCode = HttpStatusCode.BadRequest;
                     result = JsonConvert.SerializeObject(
-                        new { message = $"An unexpected error occurred. Error Reference: {DateTime.Now}"});
+                        new { error = $"An unexpected error occurred. Error Reference: {DateTime.Now}"});
                     _logger.LogError(ex, result);
                     break;
             }

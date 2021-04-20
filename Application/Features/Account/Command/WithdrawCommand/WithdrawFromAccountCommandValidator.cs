@@ -16,9 +16,6 @@ namespace Application.Features.Account.Command.WithdrawCommand
                 .NotEmpty()
                 .GreaterThan(0.0m).WithMessage("{PropertyName} has to be more than zero");
 
-            RuleFor(e => e)
-                .Must(e => e.Amount <= balance)
-                .WithMessage("Cannot withdraw amount that exceeds available balance");
         }
     }
 
