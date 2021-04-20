@@ -12,11 +12,11 @@ namespace Domain.Entities
         public decimal? Balance { get; set; }
         public Guid UserId { get; set; }
 
-        public static void WithdrawAccount(Account accountToUpdate, decimal amount)
+        public void WithdrawAccount(decimal withdrawAmount)
         {
-            if (accountToUpdate.Balance > amount)
+            if (this.Balance > withdrawAmount)
             {
-                accountToUpdate.Balance -= amount;
+                this.Balance -= withdrawAmount;
             }
             else
             {

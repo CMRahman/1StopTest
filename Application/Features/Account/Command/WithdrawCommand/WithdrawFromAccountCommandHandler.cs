@@ -38,9 +38,8 @@ namespace Application.Features.Account.Command.WithdrawCommand
                 throw new ValidationException(validationResult);
             }
 
-            Domain.Entities.Account.WithdrawAccount(accountToUpdate, request.Amount);
-
-
+            accountToUpdate.WithdrawAccount(request.Amount);
+            
             await _accountRepository.UpdateAsync(accountToUpdate);
 
             return Unit.Value;
