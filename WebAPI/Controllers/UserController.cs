@@ -7,7 +7,6 @@ using Application.Features.Users.Commands.UpdateUser;
 using Application.Features.Users.Queries.GetUserAccounts;
 using Application.Features.Users.Queries.GetUserDetails;
 using Application.Features.Users.Queries.GetUserList;
-using Domain.Entities;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -61,7 +60,7 @@ namespace WebAPI.Controllers
         public async Task<ActionResult<Guid>> Post([FromHeader] string userName, [FromBody] CreateUserCommand createUserCommand)
         {
             //TODO : In real project, this will be handled by Authorization filter
-            if (userName != "Admin")
+            if (userName.ToLower() != "admin")
             {
                 return Unauthorized("Authorization Error!! Only Administrators can create new Users");
             }
@@ -90,7 +89,7 @@ namespace WebAPI.Controllers
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Delete([FromHeader] string userName, Guid id)
         {
-            if (userName != "Admin")
+            if (userName.ToLower() != "admin")
             {
                 return Unauthorized("Authorization Error!! Only Administrators can delete Users");
             }
