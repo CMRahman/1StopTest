@@ -55,6 +55,9 @@ namespace WebAPI.Controllers
 
         // POST api/<User>
         [HttpPost(Name = "AddUser")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Guid>> Post([FromHeader] string userName, [FromBody] CreateUserCommand createUserCommand)
         {
             //TODO : In real project, this will be handled by Authorization filter
@@ -64,7 +67,7 @@ namespace WebAPI.Controllers
             }
 
             var result = await _mediator.Send(createUserCommand);
-            return Ok(result);
+            return StatusCode(201, result);
 
 
         }
@@ -82,6 +85,7 @@ namespace WebAPI.Controllers
         // DELETE api/<User>/5
         [HttpDelete("{id}", Name = "DeleteUser")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesDefaultResponseType]
         public async Task<ActionResult> Delete([FromHeader] string userName, Guid id)

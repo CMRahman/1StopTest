@@ -43,10 +43,12 @@ namespace WebAPI.Controllers
 
 
         [HttpPost(Name = "AddAccount")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesDefaultResponseType]
         public async Task<ActionResult<Guid>> Post([FromBody] CreateAccountCommand createAccountCommand)
         {
             var result = await _mediator.Send(createAccountCommand);
-            return Ok(result);
+            return StatusCode(201, result);
         }
 
 
