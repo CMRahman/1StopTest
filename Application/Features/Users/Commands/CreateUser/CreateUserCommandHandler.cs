@@ -6,7 +6,6 @@ using Application.Exceptions;
 using AutoMapper;
 using Domain.Entities;
 using MediatR;
-using Microsoft.Extensions.Logging;
 
 namespace Application.Features.Users.Commands.CreateUser
 {
@@ -14,13 +13,11 @@ namespace Application.Features.Users.Commands.CreateUser
     {
         private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
-        private readonly ILogger<CreateUserCommandHandler> _logger;
 
-        public CreateUserCommandHandler(IMapper mapper, IUserRepository userRepository, ILogger<CreateUserCommandHandler> logger)
+        public CreateUserCommandHandler(IMapper mapper, IUserRepository userRepository)
         {
             _mapper = mapper;
             _userRepository = userRepository;
-            _logger = logger;
         }
 
         public async Task<Guid> Handle(CreateUserCommand request, CancellationToken cancellationToken)
